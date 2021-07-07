@@ -1,0 +1,24 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<DocAppointmentKeeper.Models.ApplicationUser> signInManager
+@if (signInManager.IsSignedIn(User))
+{
+    <form method="post" id="logoutForm" asp-action="Logoff" asp-controller="Account">
+        <ul class="nav navbar-nav text-white">
+            <li class="nav-link text-white">Hello, @User.Identity.Name!</li>
+            <li><a class="nav-link text-white" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>
+            <a class="nav-link text-white" id="registerLink" asp-controller="Account" asp-action="Register">Register</a>
+            @*@Html.ActionLink("Sign Up","Register","Account",routeValues:null, htmlAttributes: new { id="registerLink"})*@
+        </li>
+
+        <li>
+            <a class="nav-link text-white" id="loginLink" asp-controller="Account" asp-action="Login">Login</a>
+            @*@Html.ActionLink("Sign In","Login","Account",routeValues:null, htmlAttributes: new { id="loginLink"})*@
+        </li>
+    </ul>
+}
